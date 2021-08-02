@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO-Home Page</title>
+    <!--css bootstrap-->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+</head>
+<body  style="background-image: url(images/back.jpg);">
+ 
+
+    <!--header section starts-->
+    <header class="text-center" style="background-color: #604f71;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <img src="images/icons/logo.png" class="text-right" alt="">
+                        </div>
+                        <div class="col-sm-10">
+                            <h1 class="text-white pb-4 pt-4 text-left ml-2">TO DO Manager</h1>
+                        </div>
+                    </div>
+                </div>
+                 <!--Navigation menu starts-->
+                <div class="col-sm-6">
+                    <nav class="navbar navbar-expand-lg navbar-light float-right">
+                    
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+                      
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                          <ul class="navbar-nav mr-auto pt-4 ">
+                            <li class="nav-item">
+                              <a class="nav-link text-white btn btn-primary" href="home.html">All Task <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link text-white btn btn-primary ml-2" href="addTask.html">Add Task <span class="sr-only">(current)</span></a>
+                              </li>
+                            <li class="nav-item active">
+                              <a class="nav-link text-white btn btn-primary ml-2" href="#">Task Due</a>
+                            </li>
+                            
+                          </ul>
+                          
+                        </div>
+                      </nav>
+                </div>
+                 <!--Navigation menu ends-->
+            </div>
+        </div>
+    </header>
+    <!--header section ends-->
+
+    <!--Main starts-->
+    <main>
+
+
+         <!-- task manager section strats -->
+         <section>
+            <div class="container pb-4">
+
+                <h3 class="my-5 pt-4 text-white"> Task Due: </h3>
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#todayTask"
+                                    role="tab" aria-controls="todayTask" aria-selected="true">Today</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#tommoroTask" role="tab"
+                                    aria-controls="tommoroTask" aria-selected="false">Tommorow</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#upcommingTask" role="tab"
+                                    aria-controls="upcommingTask" aria-selected="false">Upcomming</a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="tab-content" id="myTabContent">
+
+                            <!-- Todays Tasks -->
+                            <div class="tab-pane fade show active" id="todayTask" role="tabpanel"
+                                aria-labelledby="home-tab">
+                                <div class="row">
+
+                                    <p>today task</p>
+
+                                </div>
+                            </div>
+
+                            <!-- tommorows Tasks -->
+                            <div class="tab-pane fade" id="tommoroTask" role="tabpanel" aria-labelledby="profile-tab">
+                                <p> tommorow task</p>
+
+                            </div>
+
+
+                            <!-- tommorows Tasks -->
+                            <div class="tab-pane fade" id="upcommingTask" role="tabpanel" aria-labelledby="profile-tab">
+                                <p> upcomming Task </p>
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- task manager section Ends -->
+    </main>
+    <!--main ends-->
+    <!--footer starts-->
+    <footer class="footer bg-dark text-center" style="margin-bottom: 0%;">
+        <!-- <h3 class="text-white">We are here to take care of your to do task </h3> -->
+    </footer>
+    <!--footer ends-->
+</body>
+
+    <!--js,popper js and jquery-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+</html>

@@ -1,0 +1,686 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO-Home Page</title>
+    <!--css bootstrap-->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    
+   
+</head>
+<body onload="readTask()" style="background-image: url('images/back.jpg'); background-repeat: no-repeat; background-size: cover;" >
+ 
+    <!--header section starts-->
+    <header class="text-center bg-dark" style="background-color: #604f71;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <img src="images/icons/logo.png" class="text-right" alt="">
+                        </div>
+                        <div class="col-sm-10">
+                            <h1 class="text-white pb-4 pt-4 text-left ml-2">TO DO Manager</h1>
+                        </div>
+                    </div>
+                </div>
+                 <!--Navigation menu starts-->
+                <!-- <div class="col-sm-6">
+                    <nav class="navbar navbar-expand-lg navbar-light float-right">
+                    
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+                      
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                          <ul class="navbar-nav mr-auto pt-4 ">
+                            <li class="nav-item active">
+                              <a class="nav-link text-white btn btn-primary allTaskLink" href="#">All Task <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link text-white btn btn-primary ml-2 addTaskLink" href="#">Add Task <span class="sr-only">(current)</span></a>
+                              </li>
+                            <li class="nav-item">
+                              <a class="nav-link text-white btn btn-primary ml-2 taskDueLink" href="#">Task Due</a>
+                            </li>
+                            
+                          </ul>
+                          
+                        </div>
+                      </nav>
+                </div> -->
+                 <!--Navigation menu ends-->
+            </div>
+        </div>
+    </header>
+    <!--header section ends-->
+
+    <!--Main starts-->
+    <main>
+
+      <!--add task  section start-->
+      <section class="add-task-section">
+        <div class="container mt-5">
+          <!--to show number of selected questions -->
+          <div id="successmassege" hidden class="alert alert-success text-center" style="margin-left: 22%; width: 37%;" role="alert">Task Added Successfully...!</div>
+          <div id="errormassege" hidden class="alert alert-danger text-center" style="margin-left: 22%; width: 37%;" role="alert">Please Enter Task name..!</div>
+          <div class="row ml-5">
+              <div class="col-sm-2" style="padding-left: 8%;">
+                  <img src="images/icons/add.png" alt="">
+              </div>
+              <div class="col-sm-5 mt-4">
+                  <input type="text" class="form-control" style="width: 100%;" name="txtTaskName" id="txtTaskName" placeholder="Enter task name to add">
+              </div>
+              <div class="col-sm-5 mt-4">
+                  <button class="btn btn-primary btnAddTask" onclick="addTask()">Add Task</button>
+              </div>
+          </div>
+      </div>
+      </section>
+      <!--add task  section ends-->
+
+       
+        <!-- task manager section strats -->
+        <section class="">
+          <div class="container mt-5 task-due-section">
+            <div class="row">
+              <div class="col-sm-4">
+                <h2 class=" text-white"> Task Due </h2>
+                
+              </div>
+              <div class="col-sm-8 text-right">
+                <button class="btn btn-success c">Complete</button>
+                <button class="btn btn-danger d">Delete</button>
+               
+              </div>
+              
+            </div>
+            <hr>
+              <div class="card">
+
+                  <div class="card-header" style="height: 70px;">
+
+                      <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+
+                          <li class="nav-item">
+                              <a class="nav-link active" style="font-size: 22px;" id="home-tab" data-toggle="tab" href="#todayTask"
+                                  role="tab" aria-controls="todayTask" onclick="getTodaysTask()" aria-selected="true">Today</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" style="font-size: 22px;" id="profile-tab" data-toggle="tab" href="#tommoroTask" role="tab"
+                                  aria-controls="tommoroTask" onclick="getTommorowTask()" aria-selected="false">Tommorow</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" style="font-size: 22px;" id="profile-tab" data-toggle="tab" href="#upcommingTask" role="tab"
+                                  aria-controls="upcommingTask" onclick="getUpcommingTask()" aria-selected="false">Upcomming</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" style="font-size: 22px;" id="profile-tab" data-toggle="tab" href="#doneTask" role="tab"
+                                aria-controls="doneTask" onclick="getDoneTask()" aria-selected="false">Task Done</a>
+                        </li>
+
+                      </ul>
+
+                  </div>
+
+                  <div class="card-body">
+
+                      <div class="tab-content" id="myTabContent">
+
+                          <!-- Todays Tasks -->
+                          <div class="tab-pane fade show active" id="todayTask" role="tabpanel"
+                              aria-labelledby="home-tab">
+                              <div class="row">
+
+                                <table class="table todayTaskList">
+                                    <thead class="thead" style="background-color: #ab9db9;">
+                                      <tr>
+                                        <th scope="col">select</th>
+                                        <th scope="col">Code</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Schedule</th>
+                                        <th scope="col">Action</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      
+                                    </tbody>
+                                  </table>
+
+                              </div>
+                          </div>
+
+                          <!-- tommorows Tasks -->
+                          <div class="tab-pane fade" id="tommoroTask" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="row">
+
+                                <table class="table tommorowTaskList">
+                                    <thead class="thead" style="background-color: #ab9db9;">
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Schedule</th>
+                                        <th scope="col">Action</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      
+                                    </tbody>
+                                  </table>
+
+                              </div>
+
+                          </div>
+
+
+                          <!-- tommorows Tasks -->
+                          <div class="tab-pane fade" id="upcommingTask" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="row">
+
+                                <table class="table upcommingTaskList">
+                                    <thead class="thead" style="background-color: #ab9db9;">
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Schedule</th>
+                                        <th scope="col">Action</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      
+                                    </tbody>
+                                  </table>
+                            </div>
+                          </div>
+
+                           <!-- done Tasks -->
+                        <div class="tab-pane fade" id="doneTask" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="row">
+
+                                <table class="table doneTaskList">
+                                    <thead class="thead" style="background-color: #ab9db9;">
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Schedule</th>
+                                        <th scope="col">Action</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      
+                                    </tbody>
+                                  </table>
+                            </div>
+
+                        </div>
+
+                      </div>
+
+                  </div>
+              </div>
+
+          </div>
+      </section>
+      <!-- task manager section Ends -->
+
+       <!--all task display section start-->
+       <section class="">
+        <div class="container mt-5 all-task-section text-white">
+         
+              <h2 >All Task List</h2>
+
+            <hr>
+            <table class="table tblTaskList" style="border: 8px solid white;">
+                <thead class="thead bg-dark text-white" style="background-color: #ab9db9;">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Schedule</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
+        </div>
+    </section>
+    <!--all task display section ends-->
+
+
+        
+        
+    </main>
+    <!--main ends-->
+    <!--footer starts-->
+    <footer class="footer bg-dark text-center" style="margin-bottom: 0%;">
+        <!-- <h3 class="text-white">We are here to take care of your to do task </h3> -->
+    </footer>
+    <!--footer ends-->
+
+     <!-- Modal -->
+  <!-- <div class="modal fade" id="scheduleTaskModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Schedule Task</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Select Schedule</label>
+                    <select name="" id="updtschedule" class="form-control">
+                        <option value="tommorow">Tommorow</option>
+                        <option value="upcomming">Upcomming</option>
+                    </select>
+                    <input type="hidden" name="taskIndex" id="taskIndex">
+                  </div>
+                
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" id= "btnSchedule" class="btn btn-primary" onclick="updateSchedule()">Schedule</button>
+          
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+</body>
+
+    <!--js,popper js and jquery-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+</html>
+
+<script>
+
+// $(".all-task-section").show();
+// $(".add-task-section").hide();
+// $(".task-due-section").hide();
+$(".btnUpdate").hide();
+
+let taskIndex;
+
+let taksList = [
+
+    {
+         id    : "1",
+         name  : "task1",
+         status: "pending",
+         schedule:"today"
+     },
+     {
+         id    : "2",
+         name  : "task2",
+         status: "pending",
+         schedule:"tommorow"
+     },
+     {
+         id    : "3",
+         name  : "task3",
+         status: "complete",
+         schedule:"today"
+     },
+     {
+         id    : "4",
+         name  : "task4",
+         status: "pending",
+         schedule:"upcomming"
+     },
+     {
+         id    : "5",
+         name  : "task5",
+         status: "pending",
+         schedule:"tommorow"
+     },
+    
+    ];
+    
+
+    $(".allTaskLink").click(function(){
+        console.log("all");
+        $(".all-task-section").show();
+        $(".add-task-section").hide();
+        $(".task-due-section").hide();
+    });
+
+    $(".addTaskLink").click(function(){
+        console.log("all");
+        $(".all-task-section").hide();
+        $(".add-task-section").show();
+        $(".task-due-section").hide();
+    });
+
+    $(".taskDueLink").click(function(){
+        console.log("all");
+        getTodaysTask();
+        getTommorowTask();
+        $(".all-task-section").hide();
+        $(".add-task-section").hide();
+        $(".task-due-section").show();
+    });
+
+
+    //function to reda task
+    function readTask(){
+    
+    // $(".all-task-section").show();
+    // $(".add-task-section").hide();
+    // $(".task-due-section").hide();
+    getTodaysTask();
+    
+     let trHTML = "";
+    
+     for(let index in taksList){
+    
+        if(taksList[index].status=="complete"){
+         trHTML += "<tr class='table-success'>";
+        }
+        if(taksList[index].status=="pending" && taksList[index].schedule=="tommorow"){
+         trHTML += "<tr  class='table-warning'>";
+        }
+        if(taksList[index].status=="pending" && taksList[index].schedule=="today"){
+         trHTML += "<tr  class='table-warning'>";
+        }
+        if(taksList[index].status=="pending" && taksList[index].schedule=="upcomming"){
+         trHTML += "<tr class='table-danger'>";
+        }
+         trHTML += "<td>"+taksList[index].id+"</td>";
+         trHTML += "<td>"+taksList[index].name+"</td>";
+         trHTML += "<td>"+taksList[index].status+"</td>";
+         trHTML += "<td>"+taksList[index].schedule+"</td>";
+        
+         trHTML += "</tr>";
+     }
+    
+     $(".tblTaskList tbody").html(trHTML);
+    }
+
+    //today task list
+    function getTodaysTask(){
+
+        console.log("1");
+        let trHTML = "";
+    
+        for(let index in taksList){
+
+            if(taksList[index].schedule=="today" && taksList[index].status=="pending"){
+
+                trHTML += "<tr  class='table-warning'>";
+                trHTML += "<td><input type='checkbox' class='case' name='case' value="+index+"></td>";
+                trHTML += "<td>"+taksList[index].id+"</td>";
+                trHTML += "<td>"+taksList[index].name+"</td>";
+                trHTML += "<td>"+taksList[index].status+"</td>";
+                trHTML += "<td id='schedule'>";
+                trHTML +=  "<span id='sch"+index+"'>"+taksList[index].schedule+"</span>";
+                trHTML += "<select name='' hidden id='updtschedule"+index+"' class='form-control'><option value='tommorow'>Tommorow</option><option value='upcomming'>Upcomming</option></select>";
+                trHTML += "</td>";
+
+                trHTML += "<td>";
+                trHTML += "<button class='btn btn-success btnComplete' onclick='completeTask("+index+")'>Complete</button> ";
+                trHTML += "<button class='btn btn-danger btnDelete' onclick='deleteTask("+index+")'>Delete</button> ";
+                trHTML += "<button class='btn btn-info btnSchedule' onclick='scheduleTask("+index+")'>Schedule</button> ";
+                trHTML += "<button class='btn btn-primary btnUpdate"+index+"' hidden onclick='updateSchedule("+index+")'>Update</button> ";
+                trHTML += "</td>";
+                trHTML += "</tr>";
+            }
+        }
+    
+     $(".todayTaskList tbody").html(trHTML);
+
+    }
+
+
+    //today task list
+    function getTommorowTask(){
+
+        let trHTML = "";
+    
+        for(let index in taksList){
+
+            if(taksList[index].schedule=="tommorow" && taksList[index].status=="pending"){
+
+                trHTML += "<tr  class='table-warning'>";
+               
+                trHTML += "<td>"+taksList[index].id+"</td>";
+                trHTML += "<td>"+taksList[index].name+"</td>";
+                trHTML += "<td>"+taksList[index].status+"</td>";
+                trHTML += "<td id='schedule'>";
+                trHTML +=  "<span id='sch"+index+"'>"+taksList[index].schedule+"</span>";
+                trHTML += "<select name='' hidden id='updtschedule"+index+"' class='form-control'><option value='tommorow'>Tommorow</option><option value='upcomming'>Upcomming</option></select>";
+                trHTML += "</td>";
+
+                trHTML += "<td>";
+                trHTML += "<button class='btn btn-danger btnDelete' onclick='deleteTask("+index+")'>Delete</button> ";
+                
+                trHTML += "<button class='btn btn-info btnSchedule' onclick='scheduleTask("+index+")'>Schedule</button> ";
+                trHTML += "<button class='btn btn-primary btnUpdate"+index+"' hidden onclick='updateSchedule("+index+")'>Update</button> ";
+                trHTML += "</td>";
+                
+                trHTML += "</tr>";
+            }
+        }
+    
+     $(".tommorowTaskList tbody").html(trHTML);
+
+    }
+
+ //today task list
+    function getUpcommingTask(){
+
+        let trHTML = "";
+    
+        for(let index in taksList){
+
+            if(taksList[index].schedule=="upcomming" && taksList[index].status=="pending"){
+
+                trHTML += "<tr  class='table-danger'>";
+               
+                trHTML += "<td>"+taksList[index].id+"</td>";
+                trHTML += "<td>"+taksList[index].name+"</td>";
+                trHTML += "<td>"+taksList[index].status+"</td>";
+                trHTML += "<td id='schedule'>";
+                trHTML += "<span id='sch"+index+"'>"+taksList[index].schedule+"</span>";
+                trHTML += "<select name='' hidden id='updtschedule"+index+"' class='form-control'><option value='tommorow'>Tommorow</option><option value='upcomming'>Upcomming</option></select>";
+                trHTML += "</td>";
+
+                trHTML += "<td>";
+                trHTML += "<button class='btn btn-danger btnDelete' onclick='deleteTask("+index+")'>Delete</button> ";
+                
+                trHTML += "<button class='btn btn-info btnSchedule' onclick='scheduleTask("+index+")'>Schedule</button> ";
+                trHTML += "<button class='btn btn-primary btnUpdate"+index+"' hidden onclick='updateSchedule("+index+")'>Update</button> ";
+                trHTML += "</td>";
+                
+                trHTML += "</tr>";
+            }
+        }
+    
+     $(".upcommingTaskList tbody").html(trHTML);
+
+    }
+
+    //today task list
+    function getDoneTask(){
+
+        let trHTML = "";
+    
+        for(let index in taksList){
+
+            if(taksList[index].status=="complete"){
+
+                trHTML += "<tr  class='table-success'>";
+               
+                trHTML += "<td>"+taksList[index].id+"</td>";
+                trHTML += "<td>"+taksList[index].name+"</td>";
+                trHTML += "<td>"+taksList[index].status+"</td>";
+                trHTML += "<td>"+taksList[index].schedule+"</td>";
+                trHTML += "<td>";
+                    trHTML += "<button class='btn btn-warning' onclick='undoTask("+index+")'>Undo</button> ";
+                trHTML += "<button class='btn btn-danger' onclick='deleteTask("+index+")'>Delete</button> ";
+                trHTML += "</td>";
+                
+                trHTML += "</tr>";
+            }
+        }
+    
+     $(".doneTaskList tbody").html(trHTML);
+
+    }
+
+    //to add task
+    function addTask(){
+
+        console.log("add button clicked");
+
+        let code = taksList.length + 1;
+        let name = txtTaskName.value;
+
+        if(name != ""){
+
+            let newtask = {
+                id : code,
+                name : name,
+                status : "pending",
+                schedule : "today"
+            }
+
+            console.log(newtask);
+
+            taksList.push(newtask);
+
+            $("#errormassege").prop("hidden",true);
+            $("#succe ssmassege").prop("hidden",false);
+
+        }else{
+            $("#successmassege").prop("hidden",true);
+            $("#errormassege").prop("hidden",false);
+        } 
+
+        $("#txtTaskName").val("");
+        readTask();
+    } 
+
+    //Schedule task 
+    function scheduleTask(index){
+
+      taskIndex = index;
+      $("#sch"+index).hide();
+      $("#updtschedule"+index).prop("hidden" , false);
+      $(".btnComplete").hide();
+      $(".btnDelete").hide();
+      $(".btnSchedule").hide();
+      $(".btnUpdate"+index).prop("hidden" , false);
+
+
+        // $("#scheduleTaskModal").modal('show');
+        
+    }
+
+    function updateSchedule(index){
+
+      taksList[index].schedule = $("#updtschedule"+index).val();
+      getTommorowTask();
+      getUpcommingTask();
+      getTodaysTask();
+      readTask();
+      
+    }
+
+    //delete Task
+    function deleteTask(index){
+
+        let isDelete = confirm("Do you want to delete task?");
+
+        if (isDelete) {
+
+            taksList.splice(index, 1);
+            readTask();
+            getTommorowTask();
+            getUpcommingTask();
+            getTodaysTask();
+            readTask();
+        }
+
+    }
+
+
+    //complete task
+    function completeTask(index){
+
+        let iscomplete = confirm("Do you want to make in complete task?");
+
+        if (iscomplete) {
+
+            taksList[index].status = "complete";
+            readTask();
+        }
+
+    }
+
+    function undoTask(index){
+
+      taksList[index].status = "pending";
+      taksList[index].schedule = "today";
+
+      getDoneTask();
+      readTask();
+    }
+
+
+    $(".c").click(function(){
+
+      var searchIDs = $(".todayTaskList input:checkbox:checked").map(function(){
+
+        return $(this).val();
+
+      }).get();
+
+      for(let val of searchIDs){
+        
+        taksList[val].status = "complete";
+        
+      
+      }
+      readTask();
+    });
+
+    $(".d").click(function(){
+
+      var searchIDs = $(".todayTaskList input:checkbox:checked").map(function(){
+
+        return $(this).val();
+
+      }).get();
+ 
+      for(let val of searchIDs){
+        
+        taksList.splice(val, 1);
+        
+      
+      }
+      readTask();
+    });
+
+
+    $('.todayTaskList :checkbox').change(function() {
+    console.log("checked");
+      if(this.checked) {
+        $(".btnComplete").hide();
+      $(".btnDelete").hide();
+      $(".btnSchedule").hide();
+      }
+    });
+    
+    
+    
+</script>
